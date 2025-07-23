@@ -7,6 +7,7 @@ public class PlayerMovement : MonoBehaviour
     public Rigidbody2D rb;
     public Animator animator;
     bool isFacingRight = true;
+    public ParticleSystem smokeFX;
 
     [Header("Movement")]
     public float moveSpeed = 5;
@@ -121,14 +122,14 @@ public class PlayerMovement : MonoBehaviour
                 //Hold down jump button = full height
                 rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpPower);
                 jumpsRemaining--;
-                animator.SetTrigger("jump");
+                JumpFX();
             }
             else if (context.canceled)
             {
                 //Light tap of jump button = half the height
                 rb.linearVelocity = new Vector2(rb.linearVelocity.x, rb.linearVelocity.y * 0.5f);
                 jumpsRemaining--;
-                animator.SetTrigger("jump");
+                JumpFX();
             }
         }
 
@@ -138,7 +139,7 @@ public class PlayerMovement : MonoBehaviour
             isWallJumping = true;
             rb.linearVelocity = new Vector2(wallJumpDirection * wallJumpPower.x, wallJumpPower.y);
             wallJumpTimer = 0;
-            animator.SetTrigger("jump");
+            JumpFX();
 
             if (transform.localScale.x != wallJumpDirection)
             {
@@ -150,6 +151,12 @@ public class PlayerMovement : MonoBehaviour
 
             Invoke(nameof(CancelWallJump), wallJumpTime + 0.1f);
         }
+    }
+
+    private void JumpFX()
+    {
+        animator.SetTrigger("jump");
+        smokeFX.Play();
     }
 
     private void GroundCheck()
@@ -177,6 +184,11 @@ public class PlayerMovement : MonoBehaviour
             Vector3 ls = transform.localScale;
             ls.x *= -1f;
             transform.localScale = ls;
+
+            if (rb.linearVelocity.y == 0)
+            {
+                smokeFX.Play();
+            }
         }
     }
 
