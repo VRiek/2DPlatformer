@@ -13,6 +13,11 @@ public class GameController : MonoBehaviour
         Gem.OnGemCollect += IncreaseProgressAmount;
     }
 
+    private void Update()
+    {
+        Debug.Log("Progress Amount: " + progressAmount);
+    }
+
     void IncreaseProgressAmount(int amount)
     {
         progressAmount += amount;
