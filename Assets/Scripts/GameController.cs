@@ -10,13 +10,9 @@ public class GameController : MonoBehaviour
     public Slider progressSlider;
 
     public GameObject gameOverScreen;
+    public GameObject victoryScreen;
     //public TMP_Text playerDiedText;
     //public static event Action OnReset;
-
-    private void Awake()
-    {
-        DontDestroyOnLoad(this.gameObject);
-    }
 
     private void Start()
     {
@@ -25,8 +21,21 @@ public class GameController : MonoBehaviour
         Gem.OnGemCollect += IncreaseProgressAmount;
         PlayerHealth.OnPlayerDied += GameOverScreen;
         gameOverScreen.SetActive(false);
+        victoryScreen.SetActive(false);
     }
 
+    void VictoryScreen()
+    {
+        if (victoryScreen != null)
+        {
+            victoryScreen.SetActive(true);
+        }
+        else
+        {
+            Debug.Log("Victory screen is null");
+        }
+        Time.timeScale = 0f;
+    }
     void GameOverScreen()
     {
         if (gameOverScreen != null)
@@ -43,6 +52,7 @@ public class GameController : MonoBehaviour
 
     public void ResetGame()
     {
+        progressAmount = 0;
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         gameOverScreen.SetActive(false);
         Time.timeScale = 1;
@@ -63,7 +73,7 @@ public class GameController : MonoBehaviour
 
         if (progressAmount >= 100)
         {
-            //Level complete
+            VictoryScreen();
             Debug.Log("Level complete!");
         }
     }
