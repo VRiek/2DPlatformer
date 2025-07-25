@@ -11,8 +11,10 @@ public class GameController : MonoBehaviour
 
     public GameObject gameOverScreen;
     public GameObject victoryScreen;
+    public GameObject pauseMenu;
     //public TMP_Text playerDiedText;
     //public static event Action OnReset;
+    public bool isPaused = false;
 
     private void Start()
     {
@@ -22,6 +24,22 @@ public class GameController : MonoBehaviour
         PlayerHealth.OnPlayerDied += GameOverScreen;
         gameOverScreen.SetActive(false);
         victoryScreen.SetActive(false);
+    }
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            TogglePause();
+        }
+    }
+
+
+    public void TogglePause()
+    {
+        isPaused = !isPaused;
+        Time.timeScale = isPaused ? 0 : 1;
+        pauseMenu.SetActive(isPaused);
     }
 
     void VictoryScreen()

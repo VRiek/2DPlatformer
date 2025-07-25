@@ -4,11 +4,17 @@ public class PlayerShoot : MonoBehaviour
 {
     public GameObject bulletPrefab;
     public float bulletSpeed = 50f;
+    public GameController gameController;
 
+
+    private void Start()
+    {
+        gameController = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameController>();
+    }
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0) && !gameController.isPaused)
         {
             Shoot();
         }
