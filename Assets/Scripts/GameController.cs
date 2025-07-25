@@ -15,7 +15,7 @@ public class GameController : MonoBehaviour
 
     private void Update()
     {
-        Debug.Log("Progress Amount: " + progressAmount);
+        //Debug.Log("Progress Amount: " + progressAmount);
     }
 
     void IncreaseProgressAmount(int amount)
