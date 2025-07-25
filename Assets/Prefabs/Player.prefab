@@ -4882,6 +4882,7 @@ GameObject:
   - component: {fileID: 3098613867243387043}
   - component: {fileID: 1165939820009344145}
   - component: {fileID: 980781668468075337}
+  - component: {fileID: 7872212111297470883}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -5282,6 +5283,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 3
   healthUI: {fileID: 0}
+--- !u!114 &7872212111297470883
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6659866662140484907}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e74fda55319ec274ea5990c0fb118a68, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bulletPrefab: {fileID: 2757905322153880935, guid: 81d0208b39b83b24f8a3730661e51ab3, type: 3}
+  bulletSpeed: 50
 --- !u!1 &7596559940182453162
 GameObject:
   m_ObjectHideFlags: 0
